@@ -28,11 +28,11 @@ import com.microsoft.aad.adal4j.MSCAPIAsymmetricKeyCredential;
 public class MSCAPIClient {
 
 	static String authority = "https://login.microsoftonline.com"; // Address of the authority to issue token
-	static String tenant = "9da8e2f2-7ef6-45ac-8d4c-5c3d99318f96" ; // AAD Tenant identifier
-	static String applicationId = "http://kvwebapp";  // Application id for AAD federated application
-	static String resource = "https://vault.azure.net"; //  Identifier of the target resource that is the recipient of the requested token.
-	static String thumbprint = "22d5823292139298a7180be23d9f4025d1727c5c"; // Thumbprint of the client certificate being used to authenticate to AAD
-	static String keyAlias = "KVWebApp";  // Alias of the private key in the windows keystore
+	static String tenant = "<YOUR TENANT ID>" ; // AAD Tenant identifier
+	static String applicationId = "<YOUR APPLICATION IDENTIFIER>";  // Application id for AAD federated application
+	static String resource = "<YOUR TARGET RESOURCE example - https://vault.azure.net/ - if using to authnticate Azure key vault>"; //  Identifier of the target resource that is the recipient of the requested token.
+	static String thumbprint = "<YOUR CLIENT CERTIFICATE THUMBPRINT>"; // Thumbprint of the client certificate being used to authenticate to AAD
+	static String keyAlias = "<YOUR KEY ALIAS>";  // Alias of the private key in the windows keystore
 
 	static KeyStore store;
 	
