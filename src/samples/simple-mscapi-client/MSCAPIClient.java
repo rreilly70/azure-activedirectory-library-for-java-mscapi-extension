@@ -42,10 +42,10 @@ public class MSCAPIClient {
 	
 	public static void main(String[] args) throws Exception {
 
-			AuthenticationResult result = GetAccessToken();
-			System.out.println("Access Token - " + result.getAccessToken());
-            System.out.println("Refresh Token - " + result.getRefreshToken());
-            System.out.println("ID Token - " + result.getIdToken());
+		AuthenticationResult result = GetAccessToken();
+		System.out.println("Access Token - " + result.getAccessToken());
+            	System.out.println("Refresh Token - " + result.getRefreshToken());
+            	System.out.println("ID Token - " + result.getIdToken());
 			
 	}
 	
