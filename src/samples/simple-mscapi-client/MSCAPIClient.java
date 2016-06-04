@@ -30,7 +30,10 @@ public class MSCAPIClient {
 	static String authority = "https://login.microsoftonline.com"; // Address of the authority to issue token
 	static String tenant = "<YOUR TENANT ID>" ; // AAD Tenant identifier
 	static String applicationId = "<YOUR APPLICATION IDENTIFIER>";  // Application id for AAD federated application
-	static String resource = "<YOUR TARGET RESOURCE example - https://vault.azure.net/ - if using to authnticate Azure key vault>"; //  Identifier of the target resource that is the recipient of the requested token.
+	
+	// Identifier of the target resource that is the recipient of the requested token.
+	// example - "https://vault.azure.net/" - if using to authnticate Azure key vault
+	static String resource = "<YOUR TARGET RESOURCE>";  
 	static String thumbprint = "<YOUR CLIENT CERTIFICATE THUMBPRINT>"; // Thumbprint of the client certificate being used to authenticate to AAD
 	static String keyAlias = "<YOUR KEY ALIAS>";  // Alias of the private key in the windows keystore
 
