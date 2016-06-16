@@ -335,6 +335,46 @@ public class MSCAPIAuthenticationContext {
         }
     }
 
+	 /**
+     * Acquires an access token from the authority on behalf of a user. It
+     * requires using a user token previously received.
+     *
+     * @param resource
+     *            Identifier of the target resource that is the recipient of the
+     *            requested token.
+     * @param assertion
+     *            The access token to use for token acquisition.
+     * @param credential
+     *            The asymmetric key credential to use for token acquisition
+     *            when your app authenticates with certificate.
+     * @param callback
+     *            optional callback object for non-blocking execution.
+     * @return A {@link Future} object representing the
+     *         {@link AuthenticationResult} of the call. It contains Access
+     *         Token and the Access Token's expiration time. Refresh Token
+     *         property will be null for this overload.
+     * @throws AuthenticationException
+     */
+    public Future<AuthenticationResult> acquireToken(final String resource, final ClientAssertion assertion,
+            final MSCAPIAsymmetricKeyCredential credential, final AuthenticationCallback callback) {
+
+        this.validateInput(resource, credential, true);
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("resource", resource);
+        params.put("requested_token_use", "on_behalf_of");
+        try {
+            AdalAuthorizatonGrant grant = new AdalAuthorizatonGrant(
+                    new JWTBearerGrant(SignedJWT.parse(assertion.getAssertion())), params);
+
+            ClientAssertion appAssertion = MSCAPIJwtHelper.buildJwt(credential,
+                    this.authenticationAuthority.getSelfSignedJwtAudience());
+            final ClientAuthentication clientAuth = createClientAuthFromClientAssertion(appAssertion);
+            return this.acquireToken(grant, clientAuth, callback);
+        } catch (final Exception e) {
+            throw new AuthenticationException(e);
+        }
+    }
+	
     /**
      * Acquires security token from the authority.
      *
